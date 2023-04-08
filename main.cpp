@@ -18,11 +18,6 @@ int main(int argc, char* argv[])
     
     
     SDL_RenderCopy(renderer, background, NULL, NULL);
-    J_Shape.render(renderer, 100, 100);
-    I_Shape.render(renderer, 200, 200);
-    S_Shape.render(renderer, 100, 200);
-    Z_Shape.render(renderer, 200, 100);
-    O_Shape.render(renderer, 100, 300);
 
     SDL_RenderPresent(renderer);
 
