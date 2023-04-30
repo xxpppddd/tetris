@@ -6,6 +6,8 @@
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_mixer/SDL_mixer.h>
 #include <string>
+#include "text.h"
+#include "SDL_utils.h"
 
 class game {
 public:
@@ -55,16 +57,20 @@ private:
     struct point {
         int x;
         int y;
-    } blocks[4], temp_blocks[4];
+    } blocks[4], temp_blocks[4], next_blocks[4];
+    int current_shape;
     int shape;
     int color = 1;
+    int next_color = 1;
     int step = 0;
     int score = 0;
     bool rotate = false;
     unsigned int delay = 300;
     Uint32 startTime = 0, currentTime = 0;
+    Text scoreText;
 };
 
 
 
 #endif
+
