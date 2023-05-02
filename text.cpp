@@ -10,9 +10,6 @@
 void Text::loadText(string filepath, int size)
 {
     font = TTF_OpenFont(filepath.c_str(), size);
-    if (font == NULL) {
-        std::cout << "lỗi";
-    }
 }
 
 void Text::setText(string text, SDL_Renderer* render)
