@@ -1,4 +1,3 @@
-
 #ifndef game_h
 #define game_h
 
@@ -26,10 +25,14 @@ public:
     bool quitGame() {
         return (quit);
     }
+    bool paused() {
+        return pause;
+    }
     
     bool isvalid();
     
     bool init(const char* title);
+    void menu();
     void nextTetromino();
     void handleEvents();
     void setRectPosition(SDL_Rect& rect, int x = 0, int y = 0, int w = block_size, int h = block_size);
@@ -45,12 +48,14 @@ private:
     
     SDL_Window* window = NULL;
     SDL_Renderer* renderer = NULL;
+    SDL_Texture* menuTexture = NULL;
     SDL_Texture* background = NULL;
     SDL_Texture* over = NULL;
     SDL_Texture* blocks_img = NULL;
     SDL_Rect srcR = {0, 0, block_size, block_size}, desR = {0, 0, block_size, block_size};
     
     bool quit = true;
+    bool pause = false;
     bool gameIsOver = true;
     int board[rows][cols] = {0};
     static const int shapes[7][4];
@@ -65,7 +70,10 @@ private:
     int step = 0;
     int score = 0;
     bool rotate = false;
-    unsigned int delay = 300;
+    unsigned int delay = 600;
+    int temp_delay;
+    int showMenu = 0;
+    string score_text;
     Uint32 startTime = 0, currentTime = 0;
     Text scoreText;
 };
@@ -73,4 +81,3 @@ private:
 
 
 #endif
-
