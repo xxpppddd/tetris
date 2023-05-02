@@ -1,10 +1,3 @@
-//
-//  text.h
-//  tetris
-//
-//  Created by phuc dinh on 4/29/23.
-//
-
 #ifndef text_h
 #define text_h
 #pragma once
