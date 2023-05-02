@@ -26,13 +26,6 @@ private:
 public:
     void loadText(string filepath, int size);
     void setText(string text, SDL_Renderer* render);
-    void setTextColor(int r, int g, int b, int a)
-    {
-        textColor.r = r;
-        textColor.g = g;
-        textColor.b = b;
-        textColor.a = a;
-    }
     void renderText(SDL_Renderer* render, int x, int y);
 };
 
