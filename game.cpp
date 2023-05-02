@@ -1,4 +1,3 @@
-
 #include "game.h"
 
 /*
@@ -17,12 +16,52 @@ const int game::shapes[7][4] =
     1, 2, 5, 6, //O
 };
 
+void game::menu()
+{
+    SDL_Texture* menuTexture = IMG_LoadTexture(renderer, "/Users/phucd/Desktop/lập trình nâng cao/tetris/tetris_image/menu.png");
+    SDL_Event e;
+    bool menuLoop = true;
+    while(menuLoop)
+    {
+        while(SDL_PollEvent(&e) != 0)
+        {
+            if(e.type == SDL_QUIT)
+            {
+                menuLoop = false;
+                quit = true;
+                break;
+            }
+            else if(e.type == SDL_KEYDOWN)
+            {
+                switch(e.key.keysym.sym)
+                {
+                    case SDLK_ESCAPE:
+                        menuLoop = false;
+                        quit = true;
+                        break;
+                    default:
+                        menuLoop = false;
+                        break;
+                }
+            }
+        }
+
+        SDL_RenderCopy(renderer, menuTexture, NULL, NULL);
+
+        SDL_RenderPresent(renderer);
+    }
+
+    SDL_DestroyTexture(menuTexture);
+}
+
 bool game::init(const char* WINDOW_TITLE) {
     initSDL(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
+    
     Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 4096);
-        Mix_Music* music = NULL;
-        music = Mix_LoadMUS("/Users/phucd/Desktop/lập trình nâng cao/tetris/music/aespa_tetris.mp3");
-        Mix_PlayMusic(music, 127);
+    Mix_Music* music = NULL;
+    music = Mix_LoadMUS("/Users/phucd/Desktop/lập trình nâng cao/tetris/music/aespa_tetris.mp3");
+    Mix_PlayMusic(music, 127);
+    
     background = loadTexture("/Users/phucd/Desktop/lập trình nâng cao/tetris/tetris_image/tetris_background.png", renderer);
     blocks_img = loadTexture("/Users/phucd/Desktop/lập trình nâng cao/tetris/tetris_image/blocks1.png", renderer);
     over = loadTexture("/Users/phucd/Desktop/lập trình nâng cao/tetris/tetris_image/over.png", renderer);
@@ -42,6 +81,9 @@ bool game::init(const char* WINDOW_TITLE) {
     return true;
 }
 
+
+
+
 void game::nextTetromino() {
     color = next_color;
     next_color = 1 + rand() % 7;
@@ -55,8 +97,8 @@ void game::nextTetromino() {
         next_blocks[i].x = shapes[shape][i] % 4;
         next_blocks[i].y = int (shapes[shape][i] / 4);
     }
-    
 }
+
 
 void game::handleEvents() {
     SDL_Event e;
@@ -65,29 +107,34 @@ void game::handleEvents() {
             quit = true;
         }
         else if (e.type == SDL_KEYDOWN) {
-            // Handle key presses
-            switch (e.key.keysym.sym) {
-                case SDLK_LEFT:
-                    // Move tetromino left
-                    step = -1;
-                    break;
-                case SDLK_RIGHT:
-                    // Move tetromino right
-                    step = 1;
-                    break;
-                case SDLK_DOWN:
-                    // Move tetromino down
-                    delay = 0;
-                    break;
-                case SDLK_SPACE:
-                    // Rotate tetromino
-                    rotate = true;
-                    break;
-                case SDLK_ESCAPE:
-                    // Quit game
-                    quit = true;
-                    break;
-                default: break;
+            if (!pause) {
+                switch (e.key.keysym.sym) {
+                    case SDLK_LEFT:
+                        step = -1;
+                        break;
+                    case SDLK_RIGHT:
+                        step = 1;
+                        break;
+                    case SDLK_DOWN:
+                        delay = 0;
+                        break;
+                    case SDLK_SPACE:
+                        rotate = true;
+                        break;
+                    case SDLK_ESCAPE:
+                        // Quit game
+                        quit = true;
+                        break;
+                    case SDLK_p:
+                        pause = !pause;
+                        break;
+                    default: break;
+                }
+            }
+            else {
+                if (e.key.keysym.sym == SDLK_p) {
+                    pause = !pause;
+                }
             }
         }
     }
@@ -111,7 +158,7 @@ bool game::isvalid() {
 
 void game::gameplay() {
     
-    //backup
+    
     for (int i = 0; i < 4; i++) {
         temp_blocks[i] = blocks[i];
     }
@@ -158,7 +205,7 @@ void game::gameplay() {
         startTime = currentTime;
     }
     
-    //check rows
+    //check hàng
     int k = rows - 1;
     for (int i = k; i > 0; i--) {
         int count = 0;
@@ -172,8 +219,25 @@ void game::gameplay() {
         if (count == cols) {
             score += 100;
         }
-        string score_text = to_string(score);
+        score_text = to_string(score);
         scoreText.setText(score_text, renderer);
+    }
+    
+    //độ khó
+    if (score < 1000) {
+        temp_delay = 600;
+    }
+    else if (score >= 1000 and score < 2000) {
+        temp_delay = 500;
+    }
+    else if (score >= 2000 and score < 3500) {
+        temp_delay = 400;
+    }
+    else if (score >= 3500 and score < 5000){
+        temp_delay = 300;
+    }
+    else {
+        temp_delay = 200;
     }
     
     //game over
@@ -184,43 +248,52 @@ void game::gameplay() {
         }
     }
 
-    
     step = 0;
     rotate = false;
-    delay = 600;
+    delay = temp_delay;
     
 }
 void game::updateRender() {
-    SDL_RenderCopy(renderer, background, NULL, NULL);
-    if (score == 0) scoreText.renderText(renderer, 505, 170);
-    else if (score >= 100 and score < 1000) scoreText.renderText(renderer, 485, 170);
-    else if (score >= 1000 and score < 10000) scoreText.renderText(renderer, 478, 170);
-    else scoreText.renderText(renderer, 470, 170);
-    
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            if (board[i][j]) {
-                setRectPosition(srcR, board[i][j] * block_size);
-                setRectPosition(desR, j * block_size, i* block_size);
+    if (showMenu == 0) {
+        menu();
+        showMenu++;
+    }
+    if (!quit) {
+        SDL_RenderCopy(renderer, background, NULL, NULL);
+        if (pause) {
+            SDL_RenderCopy(renderer, over, NULL, NULL);
+        }
+        else {
+            if (score == 0) scoreText.renderText(renderer, 505, 170);
+            else if (score >= 100 and score < 1000) scoreText.renderText(renderer, 485, 170);
+            else if (score >= 1000 and score < 10000) scoreText.renderText(renderer, 478, 170);
+            else scoreText.renderText(renderer, 470, 170);
+            
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    if (board[i][j]) {
+                        setRectPosition(srcR, board[i][j] * block_size);
+                        setRectPosition(desR, j * block_size, i* block_size);
+                        moveRectPosition(desR, 70, 50);
+                        SDL_RenderCopy(renderer, blocks_img, &srcR, &desR);
+                    }
+                }
+            }
+            for (int i = 0; i < 4; i++) {
+                setRectPosition(srcR, next_color * block_size);
+                setRectPosition(desR, next_blocks[i].x * block_size, next_blocks[i].y * block_size);
+                if (shape == 6 or shape == 3) moveRectPosition(desR, 460, 530);
+                else moveRectPosition(desR, 475, 530);
+                SDL_RenderCopy(renderer, blocks_img, &srcR, &desR);
+            }
+            for (int i = 0; i < 4; i++) {
+                setRectPosition(srcR, color * block_size);
+                setRectPosition(desR, blocks[i].x * block_size, blocks[i].y * block_size);
                 moveRectPosition(desR, 70, 50);
                 SDL_RenderCopy(renderer, blocks_img, &srcR, &desR);
             }
         }
     }
-    for (int i = 0; i < 4; i++) {
-        setRectPosition(srcR, next_color * block_size);
-        setRectPosition(desR, next_blocks[i].x * block_size, next_blocks[i].y * block_size);
-        if (shape == 6 or shape == 3) moveRectPosition(desR, 465, 530);
-        else moveRectPosition(desR, 480, 530);
-        SDL_RenderCopy(renderer, blocks_img, &srcR, &desR);
-    }
-    for (int i = 0; i < 4; i++) {
-        setRectPosition(srcR, color * block_size);
-        setRectPosition(desR, blocks[i].x * block_size, blocks[i].y * block_size);
-        moveRectPosition(desR, 70, 50);
-        SDL_RenderCopy(renderer, blocks_img, &srcR, &desR);
-    }
-    
     SDL_RenderPresent(renderer);
 }
 
@@ -229,6 +302,11 @@ void game::updateRender() {
 void game::gameOver() {
     over = loadTexture("/Users/phucd/Desktop/lập trình nâng cao/tetris/tetris_image/over.png", renderer);
     SDL_RenderCopy(renderer, over, NULL, NULL);
+    scoreText.setText("Your score: " + score_text, renderer);
+    if (score == 0) scoreText.renderText(renderer, 250, 412);
+    else if (score >= 100 and score < 1000) scoreText.renderText(renderer, 228, 412);
+    else if (score >= 1000 and score < 10000) scoreText.renderText(renderer, 219, 412);
+    else scoreText.renderText(renderer, 211, 412);
     SDL_RenderPresent(renderer);
     SDL_Event e;
     while (SDL_PollEvent(&e)) {
@@ -237,6 +315,7 @@ void game::gameOver() {
         }
     }
     
+    
 }
 
 
@@ -244,6 +323,8 @@ void game::gameOver() {
 void game::clean() {
     SDL_DestroyTexture(blocks_img);
     SDL_DestroyTexture(background);
+    SDL_DestroyTexture(over);
+    SDL_DestroyTexture(menuTexture);
     SDL_DestroyRenderer(renderer);
     IMG_Quit();
     SDL_Quit();
