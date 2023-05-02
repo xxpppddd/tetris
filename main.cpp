@@ -11,8 +11,8 @@ int main(int argc, char* argv[]) {
         while (tetris -> isrunning() and !tetris -> quitGame()) {
             tetris -> setCurrentTime(SDL_GetTicks());
             tetris -> handleEvents();
+            if (tetris -> paused()) continue;
             tetris -> gameplay();
-            
             tetris -> updateRender();
                         
         }
@@ -24,4 +24,3 @@ int main(int argc, char* argv[]) {
     
     return 0;
 }
-
