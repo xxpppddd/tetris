@@ -11,6 +11,7 @@
 - Trò chơi bắt đầu với menu, người chơi nhấn phím bất kì để chơi và xem cách điều khiển trò chơi.
 - Khi trò chơi bắt đầu, người chơi dùng các phím mũi tên để di chuyển các tetrominos.
 - Các tetrominos sẽ rơi từ trên xuống và người chơi phải xếp chúng thành các hàng hoàn chỉnh. Khi được một hàng hoàn chỉnh, hàng đó sẽ biến mất và người chơi được cộng điểm.
+
 ![](https://github.com/xxpppddd/tetris/blob/main/README/screen.png)
 - Các tetrominos sẽ rơi càng nhanh tương ứng với số điểm của người chơi.
 - Trò chơi kết thúc khi các khối tetrominos chạm đến đỉnh của khung trò chơi.
