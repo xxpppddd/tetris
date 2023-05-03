@@ -16,6 +16,7 @@
 - Các tetrominos sẽ rơi càng nhanh tương ứng với số điểm của người chơi.
 - Trò chơi kết thúc khi các khối tetrominos chạm đến đỉnh của khung trò chơi.
 - Người chơi có thể chọn chơi lại sau khi trò chơi kết thúc bằng cách nhấn phím bất kì.
+
 ![](https://github.com/xxpppddd/tetris/blob/main/README/screen2.png)
 
 **Điều khiển**
@@ -32,6 +33,7 @@
 - [YouTube](https://www.youtube.com/watch?v=AdCWlvblBHo)
 - Nhạc nền: [aespa 'Hold On Tight' (Tetris Motion Picture Soundtrack)](https://www.youtube.com/watch?v=fvtzZFhrKLE)
 - Đồ hoạ được lấy cảm hứng từ NCT 127 – The 3rd Album Repackage [Favorite]
+
 ![](https://github.com/xxpppddd/tetris/blob/main/README/nct-127-favorite.png)
   
 
