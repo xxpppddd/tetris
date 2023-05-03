@@ -15,6 +15,7 @@
 - Các tetrominos sẽ rơi càng nhanh tương ứng với số điểm của người chơi.
 - Trò chơi kết thúc khi các khối tetrominos chạm đến đỉnh của khung trò chơi.
 - Người chơi có thể chọn chơi lại sau khi trò chơi kết thúc bằng cách nhấn phím bất kì.
+![](https://github.com/xxpppddd/tetris/blob/main/README/screen2.png)
 
 **Điều khiển**
 
