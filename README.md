@@ -30,7 +30,7 @@
 - [YouTube](https://www.youtube.com/watch?v=AdCWlvblBHo)
 - Nhạc nền: [aespa 'Hold On Tight' (Tetris Motion Picture Soundtrack)](https://www.youtube.com/watch?v=fvtzZFhrKLE)
 - Đồ hoạ được lấy cảm hứng từ NCT 127 – The 3rd Album Repackage [Favorite]
-![](https://ibb.co/1fbrMpP)
+![](https://github.com/xxpppddd/tetris/blob/main/README/nct-127-favorite.png)
   
 
 
