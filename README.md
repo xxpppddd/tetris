@@ -8,17 +8,12 @@
 
 **Cách chơi**
 
-- Trò chơi bắt đầu với menu, người chơi nhấn phím bất kì để chơi và xem cách điều khiển trò chơi.![](Aspose.Words.39479940-c23c-494b-bf82-58007fd67c10.001.png)
+- Trò chơi bắt đầu với menu, người chơi nhấn phím bất kì để chơi và xem cách điều khiển trò chơi.
 - Khi trò chơi bắt đầu, người chơi dùng các phím mũi tên để di chuyển các tetrominos.
 - Các tetrominos sẽ rơi từ trên xuống và người chơi phải xếp chúng thành các hàng hoàn chỉnh. Khi được một hàng hoàn chỉnh, hàng đó sẽ biến mất và người chơi được cộng điểm.
 - Các tetrominos sẽ rơi càng nhanh tương ứng với số điểm của người chơi.
-
-![](Aspose.Words.39479940-c23c-494b-bf82-58007fd67c10.002.png)
-
 - Trò chơi kết thúc khi các khối tetrominos chạm đến đỉnh của khung trò chơi.
 - Người chơi có thể chọn chơi lại sau khi trò chơi kết thúc bằng cách nhấn phím bất kì.
-
-![](Aspose.Words.39479940-c23c-494b-bf82-58007fd67c10.003.png)
 
 **Điều khiển**
 
@@ -35,7 +30,6 @@
 - Nhạc nền: [aespa 'Hold On Tight' (Tetris Motion Picture Soundtrack)](https://www.youtube.com/watch?v=fvtzZFhrKLE)
 - Đồ hoạ được lấy cảm hứng từ NCT 127 – The 3rd Album Repackage [Favorite]
 
-![](Aspose.Words.39479940-c23c-494b-bf82-58007fd67c10.004.png)
 
 
 
