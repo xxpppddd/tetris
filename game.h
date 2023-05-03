@@ -1,3 +1,4 @@
+
 #ifndef game_h
 #define game_h
 
@@ -28,7 +29,9 @@ public:
     bool paused() {
         return pause;
     }
-    
+    bool restartGame() {
+        return restart;
+    }
     bool isvalid();
     
     bool init(const char* title);
@@ -40,6 +43,7 @@ public:
     void gameplay();
     void updateRender();
     void gameOver();
+    void reset();
     void clean();
 private:
     enum {SCREEN_WIDTH = 700, SCREEN_HEIGHT = 700};
@@ -76,8 +80,10 @@ private:
     string score_text;
     Uint32 startTime = 0, currentTime = 0;
     Text scoreText;
+    bool restart = true;
 };
 
 
 
 #endif
+
