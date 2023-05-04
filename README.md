@@ -8,7 +8,7 @@
 
 **Cách chơi**
 
-- Trò chơi bắt đầu với menu, người chơi nhấn phím bất kì để chơi và xem cách điều khiển trò chơi.
+- Trò chơi bắt đầu với menu, người chơi có thể xem cách điều khiển trò chơi và nhấn phím bất kì để bắt đầu chơi.
 
   ![](https://github.com/xxpppddd/tetris/blob/main/resources/menu.png)
 
