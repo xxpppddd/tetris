@@ -17,7 +17,7 @@ private:
     SDL_Color textColor {208, 45, 31, 255};
 
 public:
-    void loadText(string filepath, int size);
+    void setFont(string filepath, int size);
     void setText(string text, SDL_Renderer* render);
     void renderText(SDL_Renderer* render, int x, int y);
 };
