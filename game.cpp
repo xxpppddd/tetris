@@ -58,30 +58,6 @@ void game::menu()
 
 bool game::init(const char* WINDOW_TITLE) {
     initSDL(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
-    /*Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 4096);
-    Mix_Music* music = NULL;
-    music = Mix_LoadMUS("aespa_tetris.mp3");
-    Mix_PlayMusic(music, -1);
-    
-    background = loadTexture("tetris_background.png", renderer);
-    blocks_img = loadTexture("blocks.png", renderer);
-    over = loadTexture("over.png", renderer);
-    if(TTF_Init() != 0)
-        cout << TTF_GetError();
-    scoreText.loadText("NeueHaasDisplayMedium.ttf", 36);
-    scoreText.setText("0", renderer);
-    next_color = 1 + rand() % 7;
-    shape = next_color - 1;
-    for (int i = 0; i < 4; i++) {
-        next_blocks[i].x = shapes[shape][i] % 4;
-        next_blocks[i].y = int (shapes[shape][i] / 4);
-    }
-    nextTetromino();
-    score = 0;
-    gameIsOver = false;
-    pause = false;
-    quit = false;
-    restart = false;*/
     return true;
 }
 
