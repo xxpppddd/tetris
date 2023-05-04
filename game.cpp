@@ -187,7 +187,7 @@ void game::gameplay() {
         startTime = currentTime;
     }
     
-    //check hàng
+    //check rows
     int k = rows - 1;
     for (int i = k; i > 0; i--) {
         int count = 0;
@@ -206,23 +206,23 @@ void game::gameplay() {
     }
     
     //difficulty
-    if (score < 1000) {
-        temp_delay = 500;
+    if (score < 200) {
+        delay = 500;
     }
-    else if (score >= 1000 and score < 2000) {
-        temp_delay = 400;
+    else if (score >= 200 and score < 300) {
+        delay = 400;
     }
-    else if (score >= 2000 and score < 3500) {
-        temp_delay = 300;
+    else if (score >= 300 and score < 400) {
+        delay = 300;
     }
-    else if (score >= 3500 and score < 5000){
-        temp_delay = 200;
+    else if (score >= 400 and score < 500){
+        delay = 200;
     }
     else {
-        temp_delay = 100;
+        delay = 100;
     }
     
-    //game over
+    //check game over
     for (int i = 0; i < cols; i++) {
         if (board[0][i] != 0) {
             gameIsOver = true;
@@ -232,7 +232,6 @@ void game::gameplay() {
 
     step = 0;
     rotate = false;
-    delay = temp_delay;
     
 }
 void game::updateRender() {
@@ -326,7 +325,7 @@ void game::reset() {
     over = loadTexture("over.png", renderer);
     if(TTF_Init() != 0)
         cout << TTF_GetError();
-    scoreText.loadText("NeueHaasDisplayMedium.ttf", 36);
+    scoreText.setFont("NeueHaasDisplayMedium.ttf", 36);
     scoreText.setText("0", renderer);
     next_color = 1 + rand() % 7;
     shape = next_color - 1;
