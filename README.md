@@ -1,4 +1,4 @@
-﻿**TETRIS**
+﻿**NEO CULTURE TETRIS (NCT)**
 
 - Họ và tên: Đinh Hồng Phúc
 - Mã sinh viên: 22028086
