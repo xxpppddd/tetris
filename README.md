@@ -1,8 +1,6 @@
 ﻿**NEO CULTURE TETRIS**
 
 - Họ và tên: Đinh Hồng Phúc
-- Mã sinh viên: 22028086
-- Lớp môn học: INT2215 23
 
 “Game được lập trình bằng C++ và SDL2. Game được lấy cảm hứng từ game Tetris cổ điển, trong đó người chơi phải sắp xếp các khối “tetrominos” rơi xuống với nhiều hình dạng để tạo thành các hàng hoàn chỉnh.”
 
